@@ -1,0 +1,81 @@
+# -----------------------
+# Python
+# -----------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# -----------------------
+# Virtual environments
+# -----------------------
+.venv/
+venv/
+env/
+ENV/
+.Python
+
+# -----------------------
+# macOS
+# -----------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+._*
+*.swp
+
+# -----------------------
+# IDEs / Editors
+# -----------------------
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# -----------------------
+# Logs and temporary files
+# -----------------------
+*.log
+*.tmp
+*.bak
+
+# -----------------------
+# Testing / coverage
+# -----------------------
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# -----------------------
+# Packaging / builds
+# -----------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+MANIFEST
+
+# -----------------------
+# mypy, pylint, etc.
+# -----------------------
+.mypy_cache/
+.pyre/
+.pytype/
+
+# -----------------------
+# dotenv / secrets
+# -----------------------
+.env
+.env.*
+
+# -----------------------
+# Data (your exclusion)
+# -----------------------
+data/
+images/
