@@ -4,13 +4,13 @@ run: install-deps
 	$(PY) analyse.py $(file)
 
 install-deps:
-	@echo "==> Устанавливаю/обновляю pipreqs…"
+	@echo "==> Installing/updating pipreqs…"
 	$(PY) -m pip install --quiet --upgrade pipreqs
-	@echo "==> Генерирую requirements.txt…"
-	# Сначала пробуем бинарь, если нет — через модуль
+	@echo "==> Generating requirements.txt…"
+	# First try the binary, if not — via the module
 	pipreqs . --force || $(PY) -m pipreqs.pipreqs . --force
-	@echo "==> Ставлю зависимости…"
+	@echo "==> Installing dependencies…"
 	$(PY) -m pip install --quiet -r requirements.txt
 
 clear-run:
-	$(PY) analyse.py $(file)
+	$(PY) main.py

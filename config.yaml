@@ -1,3 +1,38 @@
-processors:
-  - messages_per_month
+# Folder where all exported JSON from Telegram are located
+input_dir: "./data"
+
+# List of chats to analyze
+# Варианты:
+#   anonymous  — анонимный канал
+#   public     — публичный канал
+#   unknown    — неизвестно
+# channel_type: anonymous
+
+chats:
+  - file: "sns_anon"
+    name: "SNS: anonymous"
+    channel_type: anonymous
+  - file: "sns_jobs"
+    name: "SNS: Jobs, Salaries & Career ..."
+    channel_type: public
+  - file: "sns_msk"
+    name: "SNS: Moscow"
+    channel_type: public
+  - file: "sns_salary"
+    name: "SNS: salaries"
+    channel_type: public
+  - file: "sns_spb"
+    name: "SNS: Russia, SPb"
+    channel_type: public
+  - file: "sns_sex"
+    name: "SNS: Sex&Sleepless in startups"
+    channel_type: anonymous
+
+# which graphics will be created for each channels above
+graphics:
   - messages_per_hour
+  - messages_per_month
+
+output_dir: "./results"
+
+need_make_web_page: true

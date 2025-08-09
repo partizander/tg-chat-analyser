@@ -4,7 +4,7 @@ import json, gzip, sys, math
 from pathlib import Path
 from typing import Any, Dict, List
 
-TRIM = 140  # сколько символов показывать в примерах
+TRIM = 140  # how many characters to show in examples
 
 
 def load_json(p: Path) -> Any:
@@ -39,10 +39,10 @@ class Node:
     __slots__ = ("kind", "example", "children", "elem_kinds")
 
     def __init__(self, kind="unknown", example=None):
-        self.kind = kind  # тип узла (dict/list/str/int/…)
-        self.example = example  # пример (для примитивов)
-        self.children: Dict[str, "Node"] = {}  # для dict: ключ -> Node
-        self.elem_kinds: List[str] = []  # для list: встречавшиеся типы элементов
+        self.kind = kind  # node type (dict/list/str/int/…)
+        self.example = example  # example (for primitives)
+        self.children: Dict[str, "Node"] = {}  # for dict: key -> Node
+        self.elem_kinds: List[str] = []  # for list: element types encountered
 
 
 def merge(dst: Node, src: Node):
@@ -70,7 +70,7 @@ def build_schema(x: Any) -> Node:
             n.children.setdefault(k, Node())
             merge(n.children[k], build_schema(v))
     elif isinstance(x, list):
-        # схему элементов сводим в подузел по ключу "[*]"
+        # we reduce the diagram of elements to a subnode by the key "[*]"
         elem_schema = Node(kind="unknown")
         kinds = []
         for v in x:
@@ -100,11 +100,11 @@ def iter_messages(data: Any):
             if isinstance(x, dict):
                 yield x
     else:
-        raise SystemExit("Не узнал формат: нужен dict с 'messages' или список сообщений.")
+        raise SystemExit("Format not recognized: dict with 'messages' or list of messages needed.")
 
 
 def main():
-    s = "/Users/nualimov/IdeaProjects/tg-chat-analyser/data/sns_msk"
+    s = "../data/sns_msk"
 
     p = Path(s)
     data = load_json(p)
@@ -113,7 +113,7 @@ def main():
     for msg in iter_messages(data):
         merge(root, build_schema(msg))
 
-    # печатаем только ключи ПЕРВОГО уровня как узлы, но с их вложенностью
+    # print only the FIRST level keys as nodes, but with their nesting
     for top_key in sorted(root.children.keys()):
         print_tree(root.children[top_key], top_key, 0)
 

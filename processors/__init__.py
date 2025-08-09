@@ -1,7 +1,4 @@
-from .messages_per_month import MessagesPerMonth
-from .messages_per_hour import MessagesPerHour
-
-REGISTRY = {
-    "messages_per_month": MessagesPerMonth,
-    "messages_per_hour": MessagesPerHour,
-}
+from .registry import REGISTRY
+# импортируем процессоры, чтобы они зарегистрировались
+from . import messages_per_hour  # noqa: F401
+from . import messages_per_month  # noqa: F401

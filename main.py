@@ -1,56 +1,73 @@
-import json
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import sys
-import os
 from pathlib import Path
-from yaml import safe_load
-from processors import REGISTRY
+from typing import List, Dict, Any
 
-class ChatAnalyser:
-    def __init__(self, filepath: Path):
-        self.filepath = filepath
+from analyser.config import load_app_cfg
+from analyser.io_loader import find_input_file, load_messages
+from analyser.webindex import build_index_html
+from processors import REGISTRY  # noqa: F401 (important: imports and registers processors)
+from processors.registry import REGISTRY
 
-    def load_data(self):
-        with open(self.filepath, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        return data.get("messages", [])
+def ensure_dir(p: Path) -> None:
+    p.mkdir(parents=True, exist_ok=True)
 
-def load_config(path: Path) -> list[str]:
-    if not path.exists():
-        return []
-    with open(path, "r", encoding="utf-8") as f:
-        data = safe_load(f) or {}
-    return data.get("processors", [])
+def run_processor(name: str, messages, out_dir: Path, context: Dict[str, Any]) -> None:
+    cls = REGISTRY.get(name)
+    if not cls:
+        print(f"[warn] unknown processor: {name} (skip)")
+        return
+    try:
+        inst = cls(output_dir=out_dir, **context)
+    except TypeError:
+        inst = cls(output_dir=out_dir)
+    try:
+        inst.run(messages, **context)
+    except TypeError:
+        inst.run(messages)
 
 def main():
-    if len(sys.argv) < 3:
-        print("Usage: python main.py <input_json> <output_dir> [config.yaml]")
+    if len(sys.argv) < 2:
+        print("Usage: python -m analyser.main <config.yaml>")
         sys.exit(1)
 
-    filepath = Path(sys.argv[1])
-    output_dir = Path(sys.argv[2])
-    config_path = Path(sys.argv[3]) if len(sys.argv) >= 4 else Path("config.yaml")
+    cfg_path = Path(sys.argv[1])
+    cfg = load_app_cfg(cfg_path)
 
-    if not filepath.exists():
-        cwd = os.getcwd()
-        print(f"File {cwd}/{filepath} not found")
-        sys.exit(1)
+    if not cfg.input_dir.exists():
+        raise SystemExit(f"input_dir does not exist: {cfg.input_dir}")
 
-    output_dir.mkdir(parents=True, exist_ok=True)
+    ensure_dir(cfg.output_dir)
 
-    print(f"read from {filepath}")
-    messages = ChatAnalyser(filepath).load_data()
-    processor_names = load_config(config_path)
+    chat_dirs: List[Path] = []
+    print(f"[info] input_dir:  {cfg.input_dir}")
+    print(f"[info] output_dir: {cfg.output_dir}")
+    print(f"[info] graphics:   {', '.join(cfg.graphics) if cfg.graphics else '(none)'}")
+    print(f"[info] chats:      {len(cfg.chats)}")
 
-    for name in processor_names:
-        cls = REGISTRY.get(name)
-        if not cls:
-            print(f"unknown processor: {name}")
+    for chat in cfg.chats:
+        in_file = find_input_file(cfg.input_dir, chat.file)
+        if not in_file:
+            print(f"[warn] not found: {chat.file}.json")
             continue
-        try:
-            processor = cls(output_dir=output_dir)
-        except TypeError:
-            processor = cls()
-        processor.run(messages)
+
+        out_dir = cfg.output_dir / chat.file
+        ensure_dir(out_dir)
+        chat_dirs.append(out_dir)
+
+        print(f"[info] processing: {chat.name} ({chat.channel_type}) <- {in_file.name}")
+        messages = load_messages(in_file)
+
+        ctx = {"chat_file": chat.file, "chat_name": chat.name, "channel_type": chat.channel_type}
+        for proc in cfg.graphics:
+            run_processor(proc, messages, out_dir, ctx)
+
+    if cfg.need_make_web_page:
+        build_index_html(cfg.output_dir, chat_dirs)
+        print(f"[info] built: {cfg.output_dir/'index.html'}")
+
+    print("[done]")
 
 if __name__ == "__main__":
     main()
