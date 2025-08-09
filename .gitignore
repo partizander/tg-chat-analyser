@@ -78,5 +78,4 @@ MANIFEST
 # Data (your exclusion)
 # -----------------------
 data/
-meta_data/images/
-/results
+results/

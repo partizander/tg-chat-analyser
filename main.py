@@ -77,9 +77,9 @@ def main():
 
         ctx = {"chat_file": chat.file, "chat_name": chat.name, "channel_type": chat.channel_type}
         for proc in cfg.graphics:
-            # anonymous channels doesn't have sender info
-            if proc == "top_senders" and chat.channel_type != "public":
-                continue
+            # todo: custom by anonymous or not
+            # if proc == "top_senders" and chat.channel_type != "public":
+            #   continue
 
             run_processor(proc, messages, out_dir, ctx)
 
