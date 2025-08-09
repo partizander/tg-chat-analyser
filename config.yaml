@@ -1,0 +1,3 @@
+processors:
+  - messages_per_month
+  - messages_per_hour

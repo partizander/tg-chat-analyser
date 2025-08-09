@@ -1,0 +1,88 @@
+action : str  example='migrate_from_group'
+actor : str  example='SNS: Moscow'
+actor_id : str  example='channel1125121377'
+contact_information : dict
+  first_name : str  example='Konstantin'
+  last_name : str  example=''
+  phone_number : str  example='+7 985 639 2926'
+date : str  example='2017-06-22T18:40:01'
+date_unixtime : str  example='1498146001'
+duration_seconds : int  example=44
+edited : str  example='2017-06-22T23:37:09'
+edited_unixtime : str  example='1498163829'
+file : str  example='(File not included. Change data exporting settings to download.)'
+file_name : str  example='sticker.webp'
+file_size : int  example=35160
+forwarded_from : str  example='Vitaly Pavlenko'
+from : str  example='Vitaly Pavlenko'
+from_id : str  example='user3061143'
+height : int  example=823
+id : int  example=1
+inline_bot_buttons : list  elem_types=['list']
+  [*] : list  elem_types=['dict']
+    [*] : dict
+      button_id : int  example=1742955977
+      data : str  example=''
+      dataBase64 : str  example='eyJpZCI6IjZiNWM4MzkiLCJpIjowfQ'
+      text : str  example='Четверг – 7'
+      type : str  example='callback'
+inviter : str  example='Group'
+live_location_period_seconds : int  example=900
+location_information : dict
+  latitude : float  example=55.734752
+  longitude : float  example=37.585873
+media_type : str  example='sticker'
+members : list  elem_types=['str', 'null']
+  [*] : str  example='nipnull'
+message_id : int  example=3
+mime_type : str  example='image/webp'
+performer : str  example='Ladies & Gentlemen.... We Got Him'
+photo : str  example='(File not included. Change data exporting settings to download.)'
+photo_file_size : int  example=75428
+poll : dict
+  answers : list  elem_types=['dict']
+    [*] : dict
+      chosen : bool  example=False
+      text : str  example='Да 5%'
+      voters : int  example=0
+  closed : bool  example=False
+  question : str  example='Оставляете ли вы чай в шоколаднице'
+  total_voters : int  example=34
+reactions : list  elem_types=['dict']
+  [*] : dict
+    count : int  example=1
+    document_id : str  example='stickers/AnimatedSticker.tgs'
+    emoji : str  example='👍'
+    recent : list  elem_types=['dict']
+      [*] : dict
+        date : str  example='2025-01-13T23:32:14'
+        from : str  example='akiva'
+        from_id : str  example='user202006071'
+    type : str  example='emoji'
+reply_to_message_id : int  example=11
+saved_from : str  example='SNS Events'
+sticker_emoji : str  example='🎉'
+text : str  example=''
+  [*] : str  example='Это чатик для сейшнов и попоек в каждую пятницу вечером, подчатик чатика Startup never sleeps. Здесь обсуждается только место и время. Все …
+    collapsed : bool  example=False
+    document_id : str  example='stickers/AnimatedSticker (1).tgs'
+    href : str  example='http://ginza.ru/msk/restaurant/jon_joli'
+    language : str  example=''
+    text : str  example='https://t.me/joinchat/AAAAAD8mJKvpppgctwylJA'
+    type : str  example='link'
+    user_id : int  example=177442119
+text_entities : list  elem_types=['dict']
+  [*] : dict
+    collapsed : bool  example=False
+    document_id : str  example='stickers/AnimatedSticker (1).tgs'
+    href : str  example='http://ginza.ru/msk/restaurant/jon_joli'
+    language : str  example=''
+    text : str  example='Это чатик для сейшнов и попоек в каждую пятницу вечером, подчатик чатика Startup never sleeps. Здесь обсуждается только место и время. Все …
+    type : str  example='plain'
+    user_id : int  example=177442119
+thumbnail : str  example='(File not included. Change data exporting settings to download.)'
+thumbnail_file_size : int  example=6362
+title : str  example='SS: Moscow Friday night'
+type : str  example='service'
+via_bot : str  example='@quicksurveybot'
+width : int  example=637
