@@ -28,8 +28,6 @@ def load_app_cfg(cfg_path: Path) -> AppCfg:
     raw = safe_load(cfg_path.read_text(encoding="utf-8")) or {}
 
     out_dir = raw.get("output_dir", "./results")
-    if out_dir.strip("./") == "resuls":
-        out_dir = "./results"
 
     input_dir = Path(raw.get("input_dir", "./data"))
     output_dir = Path(out_dir)

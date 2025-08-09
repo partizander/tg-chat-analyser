@@ -9,29 +9,35 @@ input_dir: "./data"
 # channel_type: anonymous
 
 chats:
-  - file: "sns_anon"
-    name: "SNS: anonymous"
-    channel_type: anonymous
-  - file: "sns_jobs"
-    name: "SNS: Jobs, Salaries & Career ..."
-    channel_type: public
-  - file: "sns_msk"
+  - file: "sns_msk.json"
     name: "SNS: Moscow"
     channel_type: public
-  - file: "sns_salary"
-    name: "SNS: salaries"
-    channel_type: public
-  - file: "sns_spb"
-    name: "SNS: Russia, SPb"
-    channel_type: public
-  - file: "sns_sex"
-    name: "SNS: Sex&Sleepless in startups"
-    channel_type: anonymous
+#  - file: "sns_salary.json"
+#    name: "SNS: salaries"
+#    channel_type: public
+#  - file: "sns_spb.json"
+#    name: "SNS: Russia, SPb"
+#    channel_type: public
+#  - file: "sns_jobs.json"
+#    name: "SNS: Jobs, Salaries & Career ..."
+#    channel_type: public
+#  - file: "sns_anon.json"
+#    name: "SNS: anonymous"
+#    channel_type: anonymous
+#  - file: "sns_sex.json"
+#    name: "SNS: Sex&Sleepless in startups"
+#    channel_type: anonymous
+
 
 # which graphics will be created for each channels above
 graphics:
   - messages_per_hour
   - messages_per_month
+  - top_senders
+  - top_authors_by_text_length
+  - message_type_share
+  - media_type_evolution
+  - top_reactions
 
 output_dir: "./results"
 

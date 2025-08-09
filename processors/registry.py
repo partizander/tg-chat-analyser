@@ -1,5 +1,4 @@
 from typing import Dict, Type
-from pathlib import Path
 from .base import BaseProcessor
 
 REGISTRY: Dict[str, Type[BaseProcessor]] = {}
