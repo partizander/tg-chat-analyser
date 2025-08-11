@@ -31,21 +31,18 @@ chats:
 
 # which graphics will be created for each channels above
 graphics:
-#  - messages_per_hour
-#  - messages_per_month
-#  - top_senders
-#  - top_authors_by_text_length
-#  - message_type_share
-#  - media_type_evolution
-#  - top_reactions
-#  - top_messages_by_reactions
-#  - links_frequency_over_time
-#  - geo_location_clusters
-#  - top_bots_by_messages
-#  - longest_messages_table
-#  - top_stickers
-#   - poll_lifetime_vs_votes
-   - new_members_activity
+  - active_users_per_month
+  - average_message_length_per_month
+  - first_time_posters_over_time
+  - hashtags_per_month
+  - join_leave_events_per_month
+  - mentions_per_user
+  - messages_by_weekday
+  - messages_per_hour
+  - messages_per_month
+  - pinned_messages_per_month
+  - ratio_service_vs_message_over_time
+  - top_users_by_messages_from_id
 
 output_dir: "./results"
 

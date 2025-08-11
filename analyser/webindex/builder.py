@@ -35,7 +35,6 @@ def build_index_html(root_dir: Path, chat_dirs: List[Path]) -> None:
                 parts.append(
                     "<figure>"
                     f"<img src='{rel}' alt='{img.name}' loading='lazy'/>"
-                    f"<figcaption>{img.name}</figcaption>"
                     "</figure>"
                 )
             parts.append("</div>")

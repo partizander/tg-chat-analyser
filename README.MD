@@ -68,3 +68,10 @@ Reply chains length distribution – распределение длины це�
 Deleted messages per month – количество удалённых сообщений по месяцам.
 
 Join/leave events per month – сколько людей заходило/выходило из чата.
+
+Улучшение
+
+import matplotlib
+matplotlib.rcParams['font.family'] = 'Apple Color Emoji'
+
+findfont: Font family 'Apple Color Emoji' not found.

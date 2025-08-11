@@ -1,17 +1,14 @@
 from .registry import REGISTRY
 # импортируем процессоры, чтобы они зарегистрировались
-from . import messages_per_hour  # noqa: F401
-from . import messages_per_month  # noqa: F401
-from . import top_senders  # noqa: F401
-from . import top_authors_by_text_length  # noqa: F401
-from . import message_type_share
-from . import media_type_evolution
-from . import top_reactions
-from . import top_messages_by_reactions
-from . import links_frequency_over_time
-from . import geo_location_clusters
-from . import top_bots_by_messages
-from . import longest_messages_table
-from . import top_stickers
-from . import poll_lifetime_vs_votes
-from . import new_members_activity
+from . import active_users_per_month
+from . import average_message_length_per_month
+from . import first_time_posters_over_time
+from . import hashtags_per_month
+from . import join_leave_events_per_month
+from . import mentions_per_user
+from . import messages_by_weekday
+from . import messages_per_hour
+from . import messages_per_month
+from . import pinned_messages_per_month
+from . import ratio_service_vs_message_over_time
+from . import top_users_by_messages_from_id

@@ -7,9 +7,9 @@ import shutil
 
 from analyser.config import load_app_cfg
 from analyser.io_loader import find_input_file, load_messages
-from processors import REGISTRY  # noqa: F401 (important: imports and registers processors)
 from processors.registry import REGISTRY
 from analyser.webindex import build_index_html
+
 
 def ensure_dir(p: Path) -> None:
     p.mkdir(parents=True, exist_ok=True)
