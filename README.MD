@@ -75,3 +75,4 @@ import matplotlib
 matplotlib.rcParams['font.family'] = 'Apple Color Emoji'
 
 findfont: Font family 'Apple Color Emoji' not found.
+```

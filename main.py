@@ -11,11 +11,8 @@ from processors.registry import REGISTRY
 from analyser.webindex import build_index_html
 
 
-def ensure_dir(p: Path) -> None:
-    p.mkdir(parents=True, exist_ok=True)
-
-
 def run_processor(name: str, messages, out_dir: Path, context: Dict[str, Any]) -> None:
+    """Instantiate and run a processor by its registry id."""
     cls = REGISTRY.get(name)
     if not cls:
         print(f"[warn] unknown processor: {name} (skip)")
@@ -31,17 +28,13 @@ def run_processor(name: str, messages, out_dir: Path, context: Dict[str, Any]) -
 
 
 def clear_dir_contents(p: Path) -> None:
-    if not p.exists():
-        p.mkdir(parents=True, exist_ok=True)
-        return
-    for child in p.iterdir():
-        if child.is_file() or child.is_symlink():
-            child.unlink()
-        elif child.is_dir():
-            shutil.rmtree(child)
+    """Delete directory completely and recreate it."""
+    if p.exists():
+        shutil.rmtree(p)
+    p.mkdir(parents=True, exist_ok=True)
 
 
-def main():
+def main() -> None:
     if len(sys.argv) < 2:
         print("Usage: python -m analyser.main <config.yaml>")
         sys.exit(1)
@@ -52,12 +45,18 @@ def main():
     if not cfg.input_dir.exists():
         raise SystemExit(f"input_dir does not exist: {cfg.input_dir}")
 
-    ensure_dir(cfg.output_dir)
+    # Clear root output dir once
+    clear_dir_contents(cfg.output_dir)
 
     chat_dirs: List[Path] = []
+    graphics_list = (
+        ", ".join(f"{g.id}{'[anon]' if getattr(g, 'anon', False) else ''}" for g in (cfg.graphics or []))
+        if getattr(cfg, "graphics", None) else "(none)"
+    )
+
     print(f"[info] input_dir:  {cfg.input_dir}")
     print(f"[info] output_dir: {cfg.output_dir}")
-    print(f"[info] graphics:   {', '.join(cfg.graphics) if cfg.graphics else '(none)'}")
+    print(f"[info] graphics:   {graphics_list}")
     print(f"[info] chats:      {len(cfg.chats)}")
 
     for chat in cfg.chats:
@@ -67,23 +66,27 @@ def main():
             continue
 
         out_dir = cfg.output_dir / chat.file
-        ensure_dir(out_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
         chat_dirs.append(out_dir)
-
-        clear_dir_contents(out_dir)
 
         print(f"[info] processing: {chat.name} ({chat.channel_type}) <- {in_file.name}")
         messages = load_messages(in_file)
 
-        ctx = {"chat_file": chat.file, "chat_name": chat.name, "channel_type": chat.channel_type}
-        for proc in cfg.graphics:
-            # todo: custom by anonymous or not
-            # if proc == "top_senders" and chat.channel_type != "public":
-            #   continue
+        ctx: Dict[str, Any] = {
+            "chat_file": chat.file,
+            "chat_name": chat.name,
+            "channel_type": chat.channel_type,
+        }
 
-            run_processor(proc, messages, out_dir, ctx)
+        is_anon = (chat.channel_type == "anonymous")
 
-    if cfg.need_make_web_page:
+        for g in cfg.graphics:
+            if is_anon and not getattr(g, "anon", False):
+                print(f"[skip anonymous] {g.id}")
+                continue
+            run_processor(g.id, messages, out_dir, ctx)
+
+    if getattr(cfg, "need_make_web_page", False):
         build_index_html(cfg.output_dir, chat_dirs)
         print(f"[info] built: {cfg.output_dir / 'index.html'}")
 
