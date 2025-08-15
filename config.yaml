@@ -1,17 +1,16 @@
-# Folder where all exported JSON from Telegram are located
+# 📂 Folder where all exported Telegram JSON files are located
 input_dir: "./data"
 
-# List of chats to analyze
-# Варианты:
-#   anonymous  — анонимный канал
-#   public     — публичный канал
-#   unknown    — неизвестно
-# channel_type: anonymous
-
+# 📋 List of chats to analyze
+# channel_type — type of the channel:
+#   anonymous  — anonymous channel (usernames are not visible)
+#   public     — public channel (usernames are available)
+#   unknown    — type is unknown
+# For each chat, specify the export file, display name, and type
 chats:
-  - file: "sns_msk.json"
-    name: "SNS: Moscow"
-    channel_type: public
+  - file: "sns_msk.json"                      # export file name
+    name: "SNS: Moscow"                       # name shown in charts
+    channel_type: public                      # public channel
   - file: "sns_salary.json"
     name: "SNS: salaries"
     channel_type: public
@@ -28,34 +27,37 @@ chats:
     name: "SNS: Sex&Sleepless in startups"
     channel_type: anonymous
 
-
-# which graphics will be created for each channels above
+# ⚙️ Default settings for all charts
 defaults:
-  run_on_anonymous: true  # allow by default
+  run_on_anonymous: true  # allow chart generation for anonymous channels by default
 
+# 📊 List of charts to generate for each chat
 graphics:
-  - id: active_users_per_month
+  # These charts are NOT generated for anonymous channels (run_on_anonymous: false)
+  - id: active_users_per_month                # active users per month
     run_on_anonymous: false
-  - id: first_time_posters_over_time
+  - id: first_time_posters_over_time          # number of first-time posters over time
     run_on_anonymous: false
-  - id: join_leave_events_per_month
+  - id: join_leave_events_per_month           # join/leave events per month
     run_on_anonymous: false
-  - id: mentions_per_user
+  - id: mentions_per_user                     # mentions per user
     run_on_anonymous: false
-  - id: top_users_by_messages_from_id
+  - id: top_users_by_messages_from_id         # top users by message count
     run_on_anonymous: false
 
-  - id: average_message_length_per_month
-  - id: hashtags_per_month
-  - id: messages_by_weekday
-  - id: messages_per_hour
-  - id: messages_per_month
-  - id: pinned_messages_per_month
-  - id: ratio_service_vs_message_over_time
-  - id: topics_nmf
-  - id: wordcloud_top_words
+  # These charts are generated for both public and anonymous channels
+  - id: average_message_length_per_month      # average message length per month
+  - id: hashtags_per_month                    # hashtags per month
+  - id: messages_by_weekday                   # activity by weekday
+  - id: messages_per_hour                     # activity by hour of the day
+  - id: messages_per_month                    # total messages per month
+  - id: pinned_messages_per_month              # pinned messages per month
+  - id: ratio_service_vs_message_over_time    # ratio of service messages to regular messages over time
+  - id: topics_nmf                            # topic modeling (NMF)
+  - id: wordcloud_top_words                   # top words word cloud
 
-
+# 📂 Folder where results will be saved
 output_dir: "./results"
 
+# 🌐 Whether to generate an HTML page with all charts
 need_make_web_page: true
