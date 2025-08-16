@@ -11,3 +11,7 @@ Leaderboard of users ranked by the total number of messages they sent.
 **Why it’s useful:**
 - Identifies **most active members**.
 - Useful for spotting power-users and moderators.
+
+---
+
+![Visualisation example](active_users_per_month.png)

@@ -10,3 +10,7 @@ Shows the total number of messages sent each month.
 **Why it’s useful:**
 - A **basic engagement metric** over time.
 - Highlights long-term trends and seasonal changes.
+
+---
+
+![Visualisation example](messages_per_month.png)

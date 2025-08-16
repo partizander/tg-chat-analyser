@@ -16,6 +16,7 @@ browser.
 - [Configuration](#-configuration)
 - [Usage](#-usage)
 - [Example Visualizations](#-example-visualizations)
+- [Custom Visualizations](#-project-structure)
 - [Project Structure](#-project-structure)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -76,24 +77,24 @@ Open `index.html` in your browser to view the interactive dashboard.
 
 | Chart | Link                                                             |
 |-------|------------------------------------------------------------------|
-| Active Users per Month | [More](docs/graphics_info/active_users_per_month.md)             |
-| First Time Posters Over Time | [More](docs/graphics_info/first_time_posters_over_time.md)       |
-| Join/Leave Events per Month | [More](docs/graphics_info/join_leave_events_per_month.md)        |
-| Mentions per User | [More](docs/graphics_info/mentions_per_user.md)                  |
-| Top Users by Message Count | [More](docs/graphics_info/top_users_by_messages_from_id.md)      |
-| Average Message Length per Month | [More](docs/graphics_info/average_message_length_per_month.md)   |
-| Hashtags per Month | [More](docs/graphics_info/hashtags_per_month.md)                 |
-| Messages by Weekday | [More](docs/graphics_info/messages_by_weekday.md)                |
-| Messages per Hour | [More](docs/graphics_info/messages_per_hour.md)                  |
-| Messages per Month | [More](docs/graphics_info/messages_per_month.md)                 |
-| Pinned Messages per Month | [More](docs/graphics_info/pinned_messages_per_month.md)          |
-| Ratio: Service vs. Messages Over Time | [More](docs/graphics_info/ratio_service_vs_message_over_time.md) |
-| Topics NMF | [More](docs/graphics_info/topics_nmf.md)                         |
-| Wordcloud Top Words | [More](docs/graphics_info/wordcloud_top_words.md)                |
+| Active Users per Month | [More](docs/graphics_info/active_users_per_month/active_users_per_month.md)             |
+| First Time Posters Over Time | [More](docs/graphics_info/first_time_posters_over_time/first_time_posters_over_time.md)       |
+| Join/Leave Events per Month | [More](docs/graphics_info/join_leave_events_per_month/join_leave_events_per_month.md)        |
+| Mentions per User | [More](docs/graphics_info/mentions_per_user/mentions_per_user.md)                  |
+| Top Users by Message Count | [More](docs/graphics_info/top_users_by_messages_from_id/top_users_by_messages_from_id.md)      |
+| Average Message Length per Month | [More](docs/graphics_info/average_message_length_per_month/average_message_length_per_month.md)   |
+| Hashtags per Month | [More](docs/graphics_info/hashtags_per_month/hashtags_per_month.md)                 |
+| Messages by Weekday | [More](docs/graphics_info/messages_by_weekday/messages_by_weekday.md)                |
+| Messages per Hour | [More](docs/graphics_info/messages_per_hour/messages_per_hour.md)                  |
+| Messages per Month | [More](docs/graphics_info/messages_per_month/messages_per_month.md)                 |
+| Pinned Messages per Month | [More](docs/graphics_info/pinned_messages_per_month/pinned_messages_per_month.md)          |
+| Ratio: Service vs. Messages Over Time | [More](docs/graphics_info/ratio_service_vs_message_over_time/ratio_service_vs_message_over_time.md) |
+| Topics NMF | [More](docs/graphics_info/topics_nmf/topics_nmf.md)                         |
+| Wordcloud Top Words | [More](docs/graphics_info/wordcloud_top_words/wordcloud_top_words.md)                |
 
 ---
 
-## Custom visualization
+## Custom Visualizations
 
 TODO
 

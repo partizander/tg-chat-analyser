@@ -134,7 +134,7 @@ class TopicsNMF(BaseProcessor):
         wrap_chars: int = max(30, int(kwargs.get("wrap_chars", 48)))  # target row width (chars)
         font_size: int = int(kwargs.get("font_size", 13))
         title: Optional[str] = kwargs.get("title")
-        out_name: str = kwargs.get("out_name", "topics_list.png")
+        out_name: str = kwargs.get("out_name", "topics_nmf.png")
 
         # ---- data ----
         texts = list(iter_plain_text(messages))

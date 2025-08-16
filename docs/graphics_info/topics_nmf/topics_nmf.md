@@ -14,3 +14,7 @@ Identifies the most common **word clusters** (topics) in chat messages using **N
 - Reveals the **main discussion themes** in the chat.
 - Allows you to see **how conversations evolve** over time.
 - Helps detect emerging interests or recurring issues in the community.
+
+---
+
+![Visualisation example](topics_nmf.png)

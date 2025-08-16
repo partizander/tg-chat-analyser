@@ -11,3 +11,7 @@ Shows the number of **user joins** and **leaves** per month.
 **Why it’s useful:**
 - Tracks **community turnover**.
 - Helps understand periods of growth or loss.
+
+---
+
+![Visualisation example](join_leave_events_per_month.png)

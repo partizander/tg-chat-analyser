@@ -11,3 +11,7 @@ Shows the **average number of characters or words** per message for each month.
 **Why it’s useful:**
 - Indicates whether the chat is becoming **more concise or more verbose** over time.
 - Can reflect changes in chat style or topics.
+
+---
+
+![Visualisation example](average_message_length_per_month.png)

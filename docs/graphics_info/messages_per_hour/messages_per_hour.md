@@ -10,3 +10,7 @@ Shows the number of messages sent at each hour of the day (0–23).
 **Why it’s useful:**
 - Reveals **daily activity cycles**.
 - Helps choose the best posting time.
+
+---
+
+![Visualisation example](messages_per_hour.png)

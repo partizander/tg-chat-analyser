@@ -11,3 +11,7 @@ Shows when **new participants** posted their first message in the chat.
 **Why it’s useful:**
 - Tracks the **inflow of new members**.
 - Highlights spikes in newcomers, possibly linked to events or promotions.
+
+---
+
+![Visualisation example](first_time_posters_over_time.png)

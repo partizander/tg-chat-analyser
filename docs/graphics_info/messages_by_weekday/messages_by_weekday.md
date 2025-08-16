@@ -10,3 +10,7 @@ Shows how many messages are sent on each day of the week (Mon–Sun).
 **Why it’s useful:**
 - Reveals **weekly activity patterns**.
 - Helps plan events or announcements for peak days.
+
+---
+
+![Visualisation example](messages_by_weekday.png)
