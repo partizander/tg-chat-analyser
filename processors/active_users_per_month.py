@@ -7,6 +7,7 @@ import matplotlib.dates as mdates
 from .base import BaseProcessor
 from .registry import register
 
+
 @register("active_users_per_month")
 class ActiveUsersPerMonth(BaseProcessor):
     """Line chart: unique from_id per month."""

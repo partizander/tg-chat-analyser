@@ -12,24 +12,26 @@ from .registry import register
 WORD_RE = re.compile(r"[A-Za-zА-Яа-яЁё]+(?:-[A-Za-zА-Яа-яЁё]+)?", re.U)
 
 BUILTIN_STOPWORDS = {
-    "и","в","во","не","что","он","на","я","с","со","как","а","то","все","она","так","его","но","да",
-    "ты","к","у","же","вы","за","бы","по","только","ее","мне","было","вот","от","меня","еще","нет",
-    "о","из","ему","теперь","когда","даже","ну","вдруг","ли","если","уже","или","ни","быть","был",
-    "него","до","вас","нибудь","опять","уж","вам","ведь","там","потом","себя","ничего","ей","может",
-    "они","тут","где","есть","надо","ней","для","мы","тебя","их","чем","была","сам","чтоб","без",
-    "будто","чего","раз","тоже","себе","под","кто","этот","того","потому","этого","какой","совсем",
-    "ним","здесь","этом","один","почти","мой","тем","чтобы","нее","кажется","него","были","куда",
-    "зачем","сказать","всегда","тогда","который","сколько","свою","эта","тот","про","будет","такой",
-    "эти","каждый","можно","при","ну","разве","впрочем",
-    "the","a","an","and","or","of","to","in","on","for","with","is","are","was","were","be","been",
-    "it","that","this","as","at","by","from","but","if","not","no","yes","you","we","they","he","she",
-    "i","me","my","our","your","their","them","his","her","its","do","does","did","so","than","then",
-    "there","here","about","into","over","under","out","up","down","just","very","can","could","should",
+    "и", "в", "во", "не", "что", "он", "на", "я", "с", "со", "как", "а", "то", "все", "она", "так", "его", "но", "да",
+    "ты", "к", "у", "же", "вы", "за", "бы", "по", "только", "ее", "мне", "было", "вот", "от", "меня", "еще", "нет",
+    "о", "из", "ему", "теперь", "когда", "даже", "ну", "вдруг", "ли", "если", "уже", "или", "ни", "быть", "был",
+    "него", "до", "вас", "нибудь", "опять", "уж", "вам", "ведь", "там", "потом", "себя", "ничего", "ей", "может",
+    "они", "тут", "где", "есть", "надо", "ней", "для", "мы", "тебя", "их", "чем", "была", "сам", "чтоб", "без",
+    "будто", "чего", "раз", "тоже", "себе", "под", "кто", "этот", "того", "потому", "этого", "какой", "совсем",
+    "ним", "здесь", "этом", "один", "почти", "мой", "тем", "чтобы", "нее", "кажется", "него", "были", "куда",
+    "зачем", "сказать", "всегда", "тогда", "который", "сколько", "свою", "эта", "тот", "про", "будет", "такой",
+    "эти", "каждый", "можно", "при", "ну", "разве", "впрочем",
+    "the", "a", "an", "and", "or", "of", "to", "in", "on", "for", "with", "is", "are", "was", "were", "be", "been",
+    "it", "that", "this", "as", "at", "by", "from", "but", "if", "not", "no", "yes", "you", "we", "they", "he", "she",
+    "i", "me", "my", "our", "your", "their", "them", "his", "her", "its", "do", "does", "did", "so", "than", "then",
+    "there", "here", "about", "into", "over", "under", "out", "up", "down", "just", "very", "can", "could", "should",
     "это"
 }
 
+
 def _norm(w: str) -> str:
     return w.lower().replace("ё", "е")
+
 
 def iter_plain_text(messages: Iterable[Dict[str, Any]]) -> Iterable[str]:
     for m in messages:
@@ -48,8 +50,10 @@ def iter_plain_text(messages: Iterable[Dict[str, Any]]) -> Iterable[str]:
             if chunks:
                 yield " ".join(chunks)
 
+
 def tokenize(text: str) -> List[str]:
     return [_norm(w) for w in WORD_RE.findall(text)]
+
 
 @register("wordcloud_top_words")
 class WordsCloudTopWords(BaseProcessor):
@@ -64,7 +68,7 @@ class WordsCloudTopWords(BaseProcessor):
         out_name: str = kwargs.get("out_name", "wordcloud_top_words.png")
 
         extra_stop = {_norm(s) for s in kwargs.get("stopwords", [])}
-        stopwords = { _norm(s) for s in BUILTIN_STOPWORDS } | extra_stop
+        stopwords = {_norm(s) for s in BUILTIN_STOPWORDS} | extra_stop
 
         cnt = Counter()
         for text in iter_plain_text(messages):
@@ -102,7 +106,7 @@ class WordsCloudTopWords(BaseProcessor):
 
         out_path = self.output_dir / out_name
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.figure(figsize=(width/100, height/100), dpi=100)
+        plt.figure(figsize=(width / 100, height / 100), dpi=100)
         plt.imshow(wc, interpolation="bilinear")
         plt.axis("off")
         plt.tight_layout(pad=0)

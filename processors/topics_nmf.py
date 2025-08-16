@@ -17,21 +17,21 @@ from .registry import register
 WORD_RE = re.compile(r"[A-Za-zА-Яа-яЁё]+(?:-[A-Za-zА-Яа-яЁё]+)?", re.U)
 
 RU_STOP: Set[str] = {
-    "и","в","во","не","что","он","на","я","с","со","как","а","то","все","она","так","его","но","да",
-    "ты","к","у","же","вы","за","бы","по","только","ее","мне","было","вот","от","меня","еще","нет",
-    "о","из","ему","теперь","когда","даже","ну","вдруг","ли","если","уже","или","ни","быть","был",
-    "него","до","вас","нибудь","опять","уж","вам","ведь","там","потом","себя","ничего","ей","может",
-    "они","тут","где","есть","надо","ней","для","мы","тебя","их","чем","была","сам","чтоб","без",
-    "будто","чего","раз","тоже","себе","под","кто","этот","того","потому","этого","какой","совсем",
-    "ним","здесь","этом","один","почти","мой","тем","чтобы","нее","кажется","него","были","куда",
-    "зачем","сказать","всегда","тогда","который","сколько","свою","эта","тот","про","будет","такой",
-    "эти","каждый","можно","при","ну","разве","впрочем",
+    "и", "в", "во", "не", "что", "он", "на", "я", "с", "со", "как", "а", "то", "все", "она", "так", "его", "но", "да",
+    "ты", "к", "у", "же", "вы", "за", "бы", "по", "только", "ее", "мне", "было", "вот", "от", "меня", "еще", "нет",
+    "о", "из", "ему", "теперь", "когда", "даже", "ну", "вдруг", "ли", "если", "уже", "или", "ни", "быть", "был",
+    "него", "до", "вас", "нибудь", "опять", "уж", "вам", "ведь", "там", "потом", "себя", "ничего", "ей", "может",
+    "они", "тут", "где", "есть", "надо", "ней", "для", "мы", "тебя", "их", "чем", "была", "сам", "чтоб", "без",
+    "будто", "чего", "раз", "тоже", "себе", "под", "кто", "этот", "того", "потому", "этого", "какой", "совсем",
+    "ним", "здесь", "этом", "один", "почти", "мой", "тем", "чтобы", "нее", "кажется", "него", "были", "куда",
+    "зачем", "сказать", "всегда", "тогда", "который", "сколько", "свою", "эта", "тот", "про", "будет", "такой",
+    "эти", "каждый", "можно", "при", "ну", "разве", "впрочем",
 }
 EN_STOP: Set[str] = {
-    "the","a","an","and","or","of","to","in","on","for","with","is","are","was","were","be","been",
-    "it","that","this","as","at","by","from","but","if","not","no","yes","you","we","they","he","she",
-    "i","me","my","our","your","their","them","his","her","its","do","does","did","so","than","then",
-    "there","here","about","into","over","under","out","up","down","just","very","can","could","should",
+    "the", "a", "an", "and", "or", "of", "to", "in", "on", "for", "with", "is", "are", "was", "were", "be", "been",
+    "it", "that", "this", "as", "at", "by", "from", "but", "if", "not", "no", "yes", "you", "we", "they", "he", "she",
+    "i", "me", "my", "our", "your", "their", "them", "his", "her", "its", "do", "does", "did", "so", "than", "then",
+    "there", "here", "about", "into", "over", "under", "out", "up", "down", "just", "very", "can", "could", "should",
 }
 TECH_STOP: Set[str] = {"http", "https", "www", "com", "org", "ru"}
 STOPWORDS: Set[str] = RU_STOP | EN_STOP | TECH_STOP
@@ -70,7 +70,9 @@ def simple_tokenize(s: str) -> List[str]:
 # Optional lemmatization (auto-enabled if pymorphy2 is available).
 try:
     import pymorphy2  # type: ignore
+
     _MORPH = pymorphy2.MorphAnalyzer()
+
 
     def lemmatize(tokens: List[str]) -> List[str]:
         out: List[str] = []
@@ -82,6 +84,7 @@ try:
         return out
 except Exception:
     _MORPH = None
+
 
     def lemmatize(tokens: List[str]) -> List[str]:
         return tokens
@@ -128,7 +131,7 @@ class TopicsNMF(BaseProcessor):
         min_len: int = int(kwargs.get("min_len", 3))
         extra_stop: Set[str] = {str(s).lower() for s in kwargs.get("stopwords", [])}
 
-        topk_table: int = int(kwargs.get("topk_table", 5))        # how many strongest topics
+        topk_table: int = int(kwargs.get("topk_table", 5))  # how many strongest topics
         table_words: int = max(1, int(kwargs.get("table_words", 8)))
         max_word_len: int = max(6, int(kwargs.get("max_word_len", 18)))
         wrap_chars: int = max(30, int(kwargs.get("wrap_chars", 48)))  # target row width (chars)
@@ -157,8 +160,8 @@ class TopicsNMF(BaseProcessor):
             return
 
         nmf = NMF(n_components=n_topics, init="nndsvd", random_state=42, max_iter=500)
-        W = nmf.fit_transform(X)     # docs x topics
-        H = nmf.components_          # topics x terms
+        W = nmf.fit_transform(X)  # docs x topics
+        H = nmf.components_  # topics x terms
         vocab = np.array(vectorizer.get_feature_names_out())
 
         # strongest topics
@@ -221,7 +224,7 @@ class TopicsNMF(BaseProcessor):
 
             # text padding
             pad_x_ax = 0.015  # relative to axis (small left indent)
-            pad_y_ax = 0.03   # relative to row height
+            pad_y_ax = 0.03  # relative to row height
             ax.text(
                 x_ax + pad_x_ax,
                 y_ax + h_ax - pad_y_ax,
@@ -230,7 +233,7 @@ class TopicsNMF(BaseProcessor):
                 va="top",
                 fontsize=font_size,
                 family="DejaVu Sans",
-                )
+            )
 
         fig.tight_layout(pad=0.2)
         out_path = self.output_dir / out_name

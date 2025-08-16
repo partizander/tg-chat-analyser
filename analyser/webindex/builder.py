@@ -4,6 +4,7 @@ from .templates import CSS, JS
 
 IMG_EXTS = {".png", ".jpg", ".jpeg", ".svg", ".webp"}
 
+
 def build_index_html(root_dir: Path, chat_dirs: List[Path]) -> None:
     """Builds index.html with inline image gallery and lightbox support."""
     parts = [

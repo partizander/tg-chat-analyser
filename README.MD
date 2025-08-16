@@ -1,9 +1,9 @@
 # 📊 Telegram Chat Analyzer
 
-Analyze Telegram chat exports and generate interactive statistics and visualizations — all locally, right in your
+Analyze Telegram chat exports and generate interactive statistics and visualisations — all locally, right in your
 browser.
 
-![Dashboard Example 1](docs/main_readme/example_graphics_1.png)
+![Dashboard Example 1](docs/main_readme/example_graphics_1.png)  
 ![Dashboard Example 2](docs/main_readme/example_graphics_2.png)
 
 ---
@@ -15,8 +15,8 @@ browser.
 - [Exporting Data from Telegram](#-exporting-data-from-telegram)
 - [Configuration](#-configuration)
 - [Usage](#-usage)
-- [Example Visualizations](#-example-visualizations)
-- [Custom Visualizations](#-project-structure)
+- [Example Visualisations](#-example-visualisations)
+- [Custom Visualisations](#-custom-visualisations)
 - [Project Structure](#-project-structure)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -35,24 +35,22 @@ browser.
 
 ## 📦 Installation
 
-```
+```bash
 git clone https://github.com/username/telegram-chat-analyzer.git
-
-сd telegram-chat-analyzer
+cd telegram-chat-analyzer
 ```
 
 ---
 
 ## 📥 Exporting Data from Telegram
 
-[См. подробности в инструкции](docs/how_to_extract_data/how_to_extract_data.md)
+[See detailed instructions](docs/how_to_extract_data/how_to_extract_data.md)
 
 ---
 
-## 🚀 Configuration
+## ⚙️ Configuration
 
-[Конфигурация](config.yaml)
-
+[Configuration file](config.yaml)
 
 ---
 
@@ -67,37 +65,36 @@ make run
 Output will be saved in the `result/` folder.  
 Open `index.html` in your browser to view the interactive dashboard.
 
-![Результат выполнения](docs/main_readme/data_result.png)
+![Execution Result](docs/main_readme/data_result.png)
 
 ---
 
-## 📊 Example Visualizations
+## 📊 Example Visualisations
 
-В проекте уже присутствуют следующие типы графиков:
+The project already includes the following chart types:
 
-| Chart | Link                                                             |
-|-------|------------------------------------------------------------------|
-| Active Users per Month | [More](docs/graphics_info/active_users_per_month/active_users_per_month.md)             |
-| First Time Posters Over Time | [More](docs/graphics_info/first_time_posters_over_time/first_time_posters_over_time.md)       |
-| Join/Leave Events per Month | [More](docs/graphics_info/join_leave_events_per_month/join_leave_events_per_month.md)        |
-| Mentions per User | [More](docs/graphics_info/mentions_per_user/mentions_per_user.md)                  |
-| Top Users by Message Count | [More](docs/graphics_info/top_users_by_messages_from_id/top_users_by_messages_from_id.md)      |
-| Average Message Length per Month | [More](docs/graphics_info/average_message_length_per_month/average_message_length_per_month.md)   |
-| Hashtags per Month | [More](docs/graphics_info/hashtags_per_month/hashtags_per_month.md)                 |
-| Messages by Weekday | [More](docs/graphics_info/messages_by_weekday/messages_by_weekday.md)                |
-| Messages per Hour | [More](docs/graphics_info/messages_per_hour/messages_per_hour.md)                  |
-| Messages per Month | [More](docs/graphics_info/messages_per_month/messages_per_month.md)                 |
-| Pinned Messages per Month | [More](docs/graphics_info/pinned_messages_per_month/pinned_messages_per_month.md)          |
+| Chart                                 | Link                                                                                                |
+|---------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Active Users per Month                | [More](docs/graphics_info/active_users_per_month/active_users_per_month.md)                         |
+| First Time Posters Over Time          | [More](docs/graphics_info/first_time_posters_over_time/first_time_posters_over_time.md)             |
+| Join/Leave Events per Month           | [More](docs/graphics_info/join_leave_events_per_month/join_leave_events_per_month.md)               |
+| Mentions per User                     | [More](docs/graphics_info/mentions_per_user/mentions_per_user.md)                                   |
+| Top Users by Message Count            | [More](docs/graphics_info/top_users_by_messages_from_id/top_users_by_messages_from_id.md)           |
+| Average Message Length per Month      | [More](docs/graphics_info/average_message_length_per_month/average_message_length_per_month.md)     |
+| Hashtags per Month                    | [More](docs/graphics_info/hashtags_per_month/hashtags_per_month.md)                                 |
+| Messages by Weekday                   | [More](docs/graphics_info/messages_by_weekday/messages_by_weekday.md)                               |
+| Messages per Hour                     | [More](docs/graphics_info/messages_per_hour/messages_per_hour.md)                                   |
+| Messages per Month                    | [More](docs/graphics_info/messages_per_month/messages_per_month.md)                                 |
+| Pinned Messages per Month             | [More](docs/graphics_info/pinned_messages_per_month/pinned_messages_per_month.md)                   |
 | Ratio: Service vs. Messages Over Time | [More](docs/graphics_info/ratio_service_vs_message_over_time/ratio_service_vs_message_over_time.md) |
-| Topics NMF | [More](docs/graphics_info/topics_nmf/topics_nmf.md)                         |
-| Wordcloud Top Words | [More](docs/graphics_info/wordcloud_top_words/wordcloud_top_words.md)                |
+| Topics NMF                            | [More](docs/graphics_info/topics_nmf/topics_nmf.md)                                                 |
+| Wordcloud Top Words                   | [More](docs/graphics_info/wordcloud_top_words/wordcloud_top_words.md)                               |
 
 ---
 
-## Custom Visualizations
+## Custom Visualisations
 
-TODO
-
+[How to add your own chart](docs/custom_visualisation/custom_visualisation.md)
 
 ---
 
@@ -107,7 +104,7 @@ TODO
 telegram-chat-analyzer/
 │
 ├── processors/         # Data processing scripts
-├── templates/          # HTML templates for visualization
+├── templates/          # HTML templates for visualisation
 ├── docs/               # Screenshots and documentation
 ├── output/             # .json Telegram chat data exported files
 ├── data/               # Generated charts and dashboards
@@ -144,4 +141,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 - GitHub: [@artur-gavronchuk](https://github.com/artur-gavronchuk)
 - Telegram: [@it_is_artur](https://t.me/it_is_artur)
-- Website: [artur-in.me](https://artur-in.me/)
+- Website: [artur-in.me](https://artur-in.me/)  
