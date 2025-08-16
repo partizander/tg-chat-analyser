@@ -3,8 +3,8 @@
 Analyze Telegram chat exports and generate interactive statistics and visualisations — all locally, right in your
 browser.
 
-![Dashboard Example 1](docs/main_readme/example_graphics_1.png)  
-![Dashboard Example 2](docs/main_readme/example_graphics_2.png)
+![Dashboard Example 1](docs/main_readme/example_graphic_1.png)  
+![Dashboard Example 2](docs/main_readme/example_graphic_2.png)
 
 ---
 
